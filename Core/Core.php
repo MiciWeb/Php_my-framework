@@ -10,22 +10,27 @@ class Core
         include_once("./src/routes.php");
         $url = $_SERVER['REQUEST_URI'];
         $Router = new Router();
-        echo "<pre>";
-        if ($Router->get($url) != null){
-            print_r($Router->get($url));
-        }else{
+        if ($Router->get($url) != null) {
+            $arr = $Router->get($url);
+            $this->transformRouterName($arr);
+        } else {
             $DynamicRouter = new DynamicRouter();
             $DynamicRouter->get($url);
-            if(isset($controller)){
-                print_r($controller);
-            }
-            echo "<br>";
-            if(isset($action)){
-                print_r($action);
-            }
+            $this->transformRouterName($arr);
         }
-        print_r($DynamicRouter->get($url));
         echo "</pre>";
         echo "<br> url: " . $url;
+    }
+    public function transformRouterName($arr)
+    {
+        $controller = ucfirst($arr["controller"]) . "Controller";
+        $action = $arr["action"] . "Action";
+        $arr = [$controller, $action];
+        $Controller = "new $controller" . "()";
+        $Action = "->" . $action . "()";
+        echo "<br>";
+        echo $Controller;
+        echo "<br>";
+        echo $Action;
     }
 }
