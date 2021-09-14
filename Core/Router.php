@@ -27,7 +27,18 @@ class DynamicRouter
         unset($arr[0]);
         $arr["action"] = $arr[1];
         unset($arr[1]);
+        if (!isset($arr["controller"]) || $arr["controller"] == "") {
+            $arr["controller"] = "app";
+        }
+        if (!isset($arr["action"]) || $arr["action"] == "") {
+            $arr["action"] = "index";
+        }
+        // if(!isset($arr[1])){
+        //     $action = "indexAction";
+        // }else{
+        //     $action = $arr[1]. "Action";
+        // }
+        // return $controller."/".$action;
         return $arr;
-       
     }
 }
