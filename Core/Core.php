@@ -23,20 +23,17 @@ class Core
         // else {
         //     echo "ERROR 404 - ROUTE NOT FOUND";
         // }
-        echo "</pre>";
-        echo "<br> url: " . $url;
     }
     public function callController($arr)
     {
         $controller = ucfirst($arr["controller"]) . "Controller";
         $action = $arr["action"] . "Action";
         $arr = [$controller, $action];
-        $Controller = "$controller" . "()";
-        $Action = $action . "()";
-        
-        
-        echo "<br>this: ".__FILE__."<br>";
+        $Controller = $controller;
+        $Action = $action;
+        // include 'src/Controller/AppController.php';
+
         $call = new $Controller;
-        $call->$Action;
+        $call->$Action();
     }
 }
