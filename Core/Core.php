@@ -2,6 +2,7 @@
 
 namespace Core;
 
+
 class Core
 {
     public function run()
@@ -12,25 +13,30 @@ class Core
         $Router = new Router();
         if ($Router->get($url) != null) {
             $arr = $Router->get($url);
-            $this->transformRouterName($arr);
+            $this->callController($arr);
         } else {
             $DynamicRouter = new DynamicRouter();
-            $DynamicRouter->get($url);
-            $this->transformRouterName($arr);
+            $arr = $DynamicRouter->get($url);
+            $this->callController($arr);
         }
+        // TODO: 
+        // else {
+        //     echo "ERROR 404 - ROUTE NOT FOUND";
+        // }
         echo "</pre>";
         echo "<br> url: " . $url;
     }
-    public function transformRouterName($arr)
+    public function callController($arr)
     {
         $controller = ucfirst($arr["controller"]) . "Controller";
         $action = $arr["action"] . "Action";
         $arr = [$controller, $action];
-        $Controller = "new $controller" . "()";
-        $Action = "->" . $action . "()";
-        echo "<br>";
-        echo $Controller;
-        echo "<br>";
-        echo $Action;
+        $Controller = "$controller" . "()";
+        $Action = $action . "()";
+        
+        
+        echo "<br>this: ".__FILE__."<br>";
+        $call = new $Controller;
+        $call->$Action;
     }
 }
