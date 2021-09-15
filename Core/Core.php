@@ -2,7 +2,6 @@
 
 namespace Core;
 
-
 class Core
 {
     public function run()
@@ -11,14 +10,19 @@ class Core
         include_once("./src/routes.php");
         $url = $_SERVER['REQUEST_URI'];
         $Router = new Router();
+        $DynamicRouter = new DynamicRouter();
         if ($Router->get($url) != null) {
             $arr = $Router->get($url);
             $this->callController($arr);
-        } else {
-            $DynamicRouter = new DynamicRouter();
+        } 
+        elseif($DynamicRouter->get($url) != null) {
             $arr = $DynamicRouter->get($url);
             $this->callController($arr);
         }
+        echo $url;
+        echo "<pre>";
+        print_r($arr);
+        echo "</pre>";
         // TODO: 
         // else {
         //     echo "ERROR 404 - ROUTE NOT FOUND";
@@ -31,7 +35,6 @@ class Core
         $arr = [$controller, $action];
         $Controller = $controller;
         $Action = $action;
-        // include 'src/Controller/AppController.php';
 
         $call = new $Controller;
         $call->$Action();

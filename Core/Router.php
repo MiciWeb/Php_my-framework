@@ -13,6 +13,9 @@ class Router
     {
         if (isset(self::$routes[$url])) {
             return self::$routes[$url];
+        }else{
+            echo "<h2>ERROR 404 - ROUTE NOT FOUND</h2>";
+            return false;
         }
     }
 }
@@ -22,8 +25,6 @@ class DynamicRouter
     public static function get($url)
     {
         $arr = explode("/", $url);
-        // $arr["controller"] = "";
-        // $arr["action"] = "";
         array_shift($arr);
         if (isset($arr[0])) {
             $arr["controller"] = $arr[0];
