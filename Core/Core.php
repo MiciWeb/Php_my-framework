@@ -39,17 +39,7 @@ class Core
             echo "<h4> The '" . $Controller . "' controller doesn't exist.</h4>";
         }
 
-        echo "./src/Controller/" . $Controller . ".php";
-        // echo $value."<br/>";
-        // echo "<h2>ERROR 404 - ROUTE NOT FOUND</h2>";
-        // echo "<p>You may have forgotten to create the ".$Controller." class with his ".$Action." method</p>";
-
-
-
-        echo "</pre><br>";
-        echo $Controller . " -- ";
         $call = new $Controller;
-
         if (!method_exists($call, $Action)) {
             echo "<h2>404 ERROR - METHOD NOT FOUND</h2>";
             echo "<h4> The '" . $Action . "()' method doesn't exist in the Class '" . $Controller . "'.</h4>";
