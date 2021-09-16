@@ -10,33 +10,50 @@ class Core
         include_once("./src/routes.php");
         $url = $_SERVER['REQUEST_URI'];
         $Router = new Router();
-        $DynamicRouter = new DynamicRouter();
         if ($Router->get($url) != null) {
             $arr = $Router->get($url);
             $this->callController($arr);
-        } 
-        elseif($DynamicRouter->get($url) != null) {
-            $arr = $DynamicRouter->get($url);
-            $this->callController($arr);
         }
-        echo $url;
-        echo "<pre>";
-        print_r($arr);
-        echo "</pre>";
-        // TODO: 
-        // else {
-        //     echo "ERROR 404 - ROUTE NOT FOUND";
+        // ! // If you want to use the dynamic router just uncomment this and comment the basic router above
+        // $DynamicRouter = new DynamicRouter();
+        // if ($DynamicRouter->get($url) != null) {
+        //     $arr = $DynamicRouter->get($url);
+        //     $this->callController($arr);
+        //     echo "<pre>";
+        //     print_r($DynamicRouter->get($url));
+        //     echo "</pre>";
         // }
     }
     public function callController($arr)
     {
-        $controller = ucfirst($arr["controller"]) . "Controller";
-        $action = $arr["action"] . "Action";
-        $arr = [$controller, $action];
-        $Controller = $controller;
-        $Action = $action;
 
+        $Controller = ucfirst($arr["controller"]) . "Controller";
+        $Action = $arr["action"] . "Action";
+        $arr = [$Controller, $Action];
+
+        echo __FILE__;
+        echo "<br><pre>";
+
+        if (!in_array($Controller . ".php", scandir("./src/Controller"))) {
+            echo "<h2>404 ERROR - CONTROLLER NOT FOUND</h2>";
+            echo "<h4> The '" . $Controller . "' controller doesn't exist.</h4>";
+        }
+
+        echo "./src/Controller/" . $Controller . ".php";
+        // echo $value."<br/>";
+        // echo "<h2>ERROR 404 - ROUTE NOT FOUND</h2>";
+        // echo "<p>You may have forgotten to create the ".$Controller." class with his ".$Action." method</p>";
+
+
+
+        echo "</pre><br>";
+        echo $Controller . " -- ";
         $call = new $Controller;
+
+        if (!method_exists($call, $Action)) {
+            echo "<h2>404 ERROR - METHOD NOT FOUND</h2>";
+            echo "<h4> The '" . $Action . "()' method doesn't exist in the Class '" . $Controller . "'.</h4>";
+        }
         $call->$Action();
     }
 }
