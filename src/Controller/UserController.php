@@ -4,10 +4,12 @@ class UserController extends Core\Controller
     public function addAction()
     {
         $this->render('register');
+        echo "oui";
     }
 
     public function registerAction()
     {
-        echo "action";
+        $model = new UserModel;
+        $model->save($_POST);
     }
 }

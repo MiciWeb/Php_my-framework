@@ -8,4 +8,7 @@ spl_autoload_register(function ($class) {
     if (file_exists('src/Controller/' . $class . '.php')) {
         include 'src/Controller/' . $class . '.php';
     }
+    if (file_exists('src/Model/' . $class . '.php')) {
+        include 'src/Model/' . $class . '.php';
+    }
 });
