@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-
-<body>
-    <form action="./index.php" method="post">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        <input type="submit" value="Ok">
-        
-    </form>
-</body>
-
-</html>
+<h4>Login form:</h4>
+<form method="post">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <input type="submit" value="Ok">
+</form>
+<br>
+<h4><a href="register">Click here to register</a></h4>
+<?php
+// if (isset($_POST["submit"])) {
+//     $this->loginAction();
+// }

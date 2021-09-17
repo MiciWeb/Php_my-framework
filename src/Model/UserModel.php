@@ -18,4 +18,23 @@ class UserModel
 
         return $stmt;
     }
+    public function checkLogin()
+    {
+        if(isset($_POST["email"])){
+            self::$email = $_POST["email"];
+            self::$password = $_POST["password"];
+        }
+
+        $bdd = new PDO("mysql:host=localhost;dbname=my_framework;charset=utf8", "root", "root");
+        $stmt = $bdd->prepare("SELECT * from users where email = :e");
+        $stmt->execute(array(':e' => self::$email));
+        $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        echo self::$email;
+        echo self::$password;
+
+        return $userRow;
+
+
+    }
 }
