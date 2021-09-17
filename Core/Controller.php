@@ -14,11 +14,8 @@ class Controller
         ]) . '.php';
         
         if (file_exists($f)) {
-            print_r($scope);
-            
             ob_start();
             include($f);
-            echo "oui";
             $view = ob_get_clean();
             ob_start();
             include(implode(DIRECTORY_SEPARATOR, [dirname(__DIR__), 'src', 'View', 'index']) . '.php');
@@ -27,4 +24,9 @@ class Controller
             echo "<h2>404 ERROR - VIEW DONT EXIST</h2>";
         }
     }
+    public function __destruct()
+    {
+        echo self::$_render;
+    }
+
 }

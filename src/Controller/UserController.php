@@ -3,7 +3,7 @@ class UserController extends Core\Controller
 {
     public function addAction()
     {
-        $this->render('register',["lol","supprime"]);
+        $this->render('register');
     }
 
     public function registerAction()

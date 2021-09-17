@@ -6,7 +6,6 @@ class Core
 {
     public function run()
     {
-        echo __CLASS__ . " [OK]" . PHP_EOL;
         include_once("./src/routes.php");
         $url = $_SERVER['REQUEST_URI'];
         $Router = new Router();
@@ -31,9 +30,6 @@ class Core
         $Action = $arr["action"] . "Action";
         $arr = [$Controller, $Action];
 
-        echo __FILE__;
-        echo "<br><pre>";
-
         if (!in_array($Controller . ".php", scandir("./src/Controller"))) {
             echo "<h2>404 ERROR - CONTROLLER NOT FOUND</h2>";
             echo "<h4> The '" . $Controller . "' controller doesn't exist.</h4>";
@@ -44,6 +40,7 @@ class Core
             echo "<h2>404 ERROR - METHOD NOT FOUND</h2>";
             echo "<h4> The '" . $Action . "()' method doesn't exist in the Class '" . $Controller . "'.</h4>";
         }
+
         $call->$Action();
     }
 }
