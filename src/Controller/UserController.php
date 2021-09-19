@@ -1,9 +1,18 @@
 <?php
+
+use Core\Request;
+
 class UserController extends Core\Controller
 {
+    public static $request;
+    public function __construct()
+    {
+        self::$request = new Core\Request;
+    }
     public function addAction()
     {
         $this->render('register');
+        print_r(self::$request);
     }
 
     public function registerAction()
