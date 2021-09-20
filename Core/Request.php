@@ -6,13 +6,14 @@ class Request
 {
     public function __construct()
     {
-        echo "<pre>";
-        foreach($_REQUEST as $value){
-            trim($value);
-            stripslashes($value);
-            htmlspecialchars($value);
-        }
-        print_r($_REQUEST);
-        echo "</pre>";
+        $arr = array_map(function($v){
+            $v = trim($v);
+            $v = htmlspecialchars($v);
+            $v = stripslashes($v);
+            $v = ucfirst($v);
+            print_r($v);
+            return $v;
+          }, $_REQUEST);
+          return $arr;
     }
 }

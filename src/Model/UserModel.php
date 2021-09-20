@@ -22,21 +22,27 @@ class UserModel extends Dbh
 {
     private static $email, $password;
 
-    public function save()
+    public function save($arr)
     {
-        self::$email = $_POST["email"];
-        self::$password = $_POST["password"];
+        echo "<br>";
+          echo "test->>>";
+          print_r($arr);
 
-        // $bdd = new PDO("mysql:host=localhost;dbname=my_framework;charset=utf8", "root", "root");
-        $stmt = $this->dbConnect()->prepare("INSERT INTO users(`email`, `password`)VALUES (:email,:password)");
-        $stmt->bindParam(":email", self::$email);
-        $stmt->bindParam(":password", self::$password);
-        $stmt->execute();
+
+        self::$email = $arr["email"];
+        self::$password = $arr["password"];
+
+        // $stmt = $this->dbConnect()->prepare("INSERT INTO users(`email`, `password`)VALUES (:email,:password)");
+        // $stmt->bindParam(":email", self::$email);
+        // $stmt->bindParam(":password", self::$password);
+        // $stmt->execute();
+        echo "<br>";
+        echo "userModel->>>";
 
         echo self::$email;
         echo self::$password;
 
-        return $stmt;
+        // return $stmt;
     }
     public function checkLogin()
     {
