@@ -1,34 +1,10 @@
 <?php
-class Dbh
-{
-    private $servername = "localhost", $dbname = "my_framework";
-    private $username = "root", $password = "root";
-
-
-    protected function dbConnect()
-    {
-        $sql = "mysql:host=" . $this->servername . ";dbname=" . $this->dbname . ";charset=utf8";
-        try {
-            $dbh = new PDO($sql, $this->username, $this->password);
-        } catch (Exception $e) {
-            echo "Erreur: " . $e->getMessage() . "<br>Ligne: " . $e->getLine();
-            die();
-        }
-        return $dbh;
-    }
-}
-
-class UserModel extends Dbh
+class UserModel extends \Core\Entity
 {
     private static $email, $password;
 
     public function save($arr)
     {
-        echo "<br>";
-          echo "test->>>";
-          print_r($arr);
-
-
         self::$email = $arr["email"];
         self::$password = $arr["password"];
 
@@ -36,13 +12,10 @@ class UserModel extends Dbh
         // $stmt->bindParam(":email", self::$email);
         // $stmt->bindParam(":password", self::$password);
         // $stmt->execute();
-        echo "<br>";
-        echo "userModel->>>";
-
-        echo self::$email;
-        echo self::$password;
-
-        // return $stmt;
+        $ORM = new Core\ORM;
+        $ORM->create("users",array("email" => self::$email, "password" => self::$password));
+        // $stmt->execute();
+        
     }
     public function checkLogin()
     {
@@ -51,13 +24,10 @@ class UserModel extends Dbh
             self::$password = $_POST["password"];
         }
 
-        $stmt = $this->dbConnect()->prepare("SELECT * from users where email = :e");
-        $stmt->execute(array(':e' => self::$email));
-        $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $stmt = $this->dbConnect()->prepare("SELECT * from users where email = :e");
+        // $stmt->execute(array(':e' => self::$email));
+        // $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        echo self::$email;
-        echo self::$password;
-
-        return $userRow;
+        // return $userRow;
     }
 }

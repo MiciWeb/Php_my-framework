@@ -1,6 +1,6 @@
 <?php
 
-use Core\Request;
+// use Core\Request;
 
 class UserController extends Core\Controller
 {
@@ -8,19 +8,19 @@ class UserController extends Core\Controller
     public function __construct()
     {
         // call the ./Core/Request class which secure all the form input 
-        self::$request = new Core\Request;
+        $params = new Core\Request;
+        self::$request = $params->getQueryParams();
     }
     public function addAction()
     {
         $this->render('register');
-        print_r(self::$request);
-        $model = new UserModel;
-        $model->save(self::$request);
     }
 
     public function registerAction()
     {
-        
+        // send secured register form input to the model
+        $model = new UserModel;
+        $model->save(self::$request);
     }
     public function loginAction()
     {

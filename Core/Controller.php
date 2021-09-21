@@ -28,5 +28,4 @@ class Controller
     {
         echo self::$_render;
     }
-
 }
