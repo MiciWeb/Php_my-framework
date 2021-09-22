@@ -5,17 +5,8 @@ class UserModel extends \Core\Entity
 
     public function save($arr)
     {
-        self::$email = $arr["email"];
-        self::$password = $arr["password"];
-
-        // $stmt = $this->dbConnect()->prepare("INSERT INTO users(`email`, `password`)VALUES (:email,:password)");
-        // $stmt->bindParam(":email", self::$email);
-        // $stmt->bindParam(":password", self::$password);
-        // $stmt->execute();
-        $ORM = new Core\ORM;
-        $ORM->create("users",array("email" => self::$email, "password" => self::$password));
-        // $stmt->execute();
-        
+        // $ORM = new Core\ORM;
+        $this->create("users", array("email" => $arr["email"], "password" => $arr["password"]));
     }
     public function checkLogin()
     {

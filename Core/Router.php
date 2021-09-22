@@ -18,7 +18,7 @@ class Router
             echo "<h2>ERROR 404 - ROUTE NOT FOUND</h2>";
             return false;
         }
-    }
+    }  
 }
 
 class DynamicRouter

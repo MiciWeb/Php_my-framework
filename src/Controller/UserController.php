@@ -15,12 +15,11 @@ class UserController extends Core\Controller
     {
         $this->render('register');
     }
-
     public function registerAction()
     {
         // send secured register form input to the model
         $model = new UserModel;
-        $model->save(self::$request);
+        echo $model->save(self::$request);
     }
     public function loginAction()
     {

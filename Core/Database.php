@@ -2,14 +2,13 @@
 namespace Core;
 
 class Database{
-    public $servername = "localhost", $dbname = "my_framework";
-    public $username = "root", $password = "root";
+    public static $servername = "localhost", $dbname = "my_framework",  $username = "root", $password = "root";
 
-    public function dbConnect()
+    public static function dbConnect()
     {
-        $sql = "mysql:host=" . $this->servername . ";dbname=" . $this->dbname . ";charset=utf8";
+        $sql = "mysql:host=" . self::$servername . ";dbname=" . self::$dbname . ";charset=utf8";
         try {
-            $dbh = new \PDO($sql, $this->username, $this->password);
+            $dbh = new \PDO($sql, self::$username, self::$password);
         } catch (\Exception $e) {
             echo "Erreur: " . $e->getMessage() . "<br>Ligne: " . $e->getLine();
             die();
