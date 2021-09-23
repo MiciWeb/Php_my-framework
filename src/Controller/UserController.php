@@ -19,19 +19,28 @@ class UserController extends Core\Controller
     {
         // send secured register form input to the model
         $model = new UserModel;
-        echo $model->save(self::$request);
+        $model->save(self::$request);
     }
     public function loginAction()
     {
         $this->render("login");
         $model = new UserModel;
-        if (count($_POST) > 1) {
-            if ($model->checkLogin($_POST)) {
-                echo "oui";
-                $this->render("show");
+        $infos = $model->checkLogin(self::$request);
+        if(isset($infos["password"])){
+            if (self::$request["password"] === $infos["password"]) {
+                $this->redirect("user/".$infos["id"]);
+            //    $this->render("show",$infos);
             } else {
-                echo "wrong email or pass";
+                echo "<p>Password incorrect</p>";
             }
         }
+        // if (count(self::$request) > 1) {
+        //     if ($model->checkLogin(self::$request)) {
+        //         echo "oui";
+        //         $this->render("show");
+        //     } else {
+        //         echo "wrong email or pass";
+        //     }
+        // }
     }
 }

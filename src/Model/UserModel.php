@@ -3,22 +3,14 @@ class UserModel extends \Core\Entity
 {
     private static $email, $password;
 
-    public function save($arr)
+    public function save($request)
     {
-        // $ORM = new Core\ORM;
-        $this->create("users", array("email" => $arr["email"], "password" => $arr["password"]));
+        $this->create("users", array("email" => $request["email"], "password" => $request["password"]));
     }
-    public function checkLogin()
+    public function checkLogin($request)
     {
-        if (isset($_POST["email"])) {
-            self::$email = $_POST["email"];
-            self::$password = $_POST["password"];
+        if(isset($request["email"])){
+            return $this->find("users", array('WHERE' => "email = '".$request["email"]."'"));
         }
-
-        // $stmt = $this->dbConnect()->prepare("SELECT * from users where email = :e");
-        // $stmt->execute(array(':e' => self::$email));
-        // $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // return $userRow;
     }
 }

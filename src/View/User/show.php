@@ -1,1 +1,2 @@
-<h4>Hello ma friend, howayou?</h4>
+<?php
+echo "<h4>Hello ". $scope["email"] .", howayou?</h4>";

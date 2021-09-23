@@ -16,9 +16,9 @@ class Entity
     {
         return ORM::create($table, $fields);
     }
-    public function read($table, $id)
+    public function read($table, $email)
     {
-        return ORM::read($table, $id);
+        return ORM::read($table, $email);
     }
     public function update($table, $id, $fields)
     {
@@ -28,8 +28,8 @@ class Entity
     {
         return ORM::delete($table, $id);
     }
-    public function find($table, $params = array( 'WHERE' => '1', 'ORDER BY' => 'id ASC', 'LIMIT' => ''))
+    public function find($table, $params)
     {
-        return ORM::find($table, $params = array( 'WHERE' => '1', 'ORDER BY' => 'id ASC', 'LIMIT' => ''));
+        return ORM::find($table, $params);
     }
 }

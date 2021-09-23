@@ -30,15 +30,16 @@ class ORM extends Database
         $query = self::dbConnect()->query("DELETE FROM $table WHERE id = $id");
         return $query;
     }
-    public static function find($table, $params = array( 'WHERE' => '1', 'ORDER BY' => 'id ASC', 'LIMIT' => ''))
+    public static function find($table, $params)
     {
         $str_fields = "";
         foreach ($params as $key => $value) {
             if (!empty($value) && $key != "old_password") {
-                $str_fields .= $key . " = '" . $value . "', ";
+                $str_fields .= $key . " " . $value . " ";
             }
         }
-        $query = self::dbConnect()->query("SELECT * from $table 'rtrim($str_fields,", ")'");
-        return $query;
+
+        $query = self::dbConnect()->query("SELECT * FROM $table $str_fields ");
+        return $query->fetch(\PDO::FETCH_ASSOC);
     }
 }
