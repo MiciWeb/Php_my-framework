@@ -12,7 +12,6 @@ class UserController extends Core\Controller
         $this->render('register');
         $params = new Core\Request;
         $request = $params->getQueryParams();
-
         if (isset($request) && $request != null) {
             $message = "Account created !";
             $this->render('register', ["message" => $message]);
@@ -33,7 +32,7 @@ class UserController extends Core\Controller
                 if ($request["password"] === $infos["password"]) {
                     $_SESSION["email"] = $infos["email"];
                     $_SESSION["id"] = $infos["id"];
-                    $this->redirect("user");
+                    $this->redirect("show");
                 } else {
                     echo "<p>Password incorrect</p>";
                 }
@@ -42,6 +41,12 @@ class UserController extends Core\Controller
     }
     public function showAction()
     {
+        $params = new Core\Request;
+        $request = $params->getQueryParams();
+        if(isset($request["email"])){
+            $model = new UserModel;
+            $model->update("users",$_SESSION["id"],["email" => $request["email"]]);
+        }
         $this->render("show", $_SESSION);
     }
 

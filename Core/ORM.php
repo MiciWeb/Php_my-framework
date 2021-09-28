@@ -22,7 +22,12 @@ class ORM extends Database
                 $str_fields .= $key . " = '" . $value . "', ";
             }
         }
-        $query = self::dbConnect()->query("UPDATE $table SET 'rtrim($str_fields,", ")' WHERE id = $id");
+        echo $table;
+        echo "<br>";
+        echo "UPDATE $table SET ".substr($str_fields,0,-2)." WHERE id = $id";
+        echo "<br>";
+
+        $query = self::dbConnect()->query("UPDATE $table SET ".substr($str_fields,0,-2)." WHERE id = $id");
         return $query;
     }
     public static function delete($table, $id)
