@@ -13,4 +13,8 @@ class UserModel extends \Core\Entity
             return $this->find("users", array('WHERE' => "email = '".$request["email"]."'"));
         }
     }
+    public function deleteAccount($user,$id){
+        echo "hello";
+        // return $this->delete($user,$id); 
+    }
 }

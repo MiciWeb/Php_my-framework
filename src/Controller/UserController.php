@@ -1,10 +1,11 @@
 <?php
 
 // use Core\Request;
-
+session_start();
 class UserController extends Core\Controller
 {
     public static $request;
+
     public function __construct()
     {
         // call the ./Core/Request class which secure all the form input 
@@ -21,15 +22,19 @@ class UserController extends Core\Controller
         $model = new UserModel;
         $model->save(self::$request);
     }
+    // public function showAction($id) {
+    //     echo "ID de l'utilisateur a afficher : $id" . PHP_EOL;
+    // }
     public function loginAction()
     {
         $this->render("login");
         $model = new UserModel;
         $infos = $model->checkLogin(self::$request);
-        if(isset($infos["password"])){
+        if (isset($infos["password"])) {
             if (self::$request["password"] === $infos["password"]) {
-                $this->redirect("user/".$infos["id"]);
-            //    $this->render("show",$infos);
+                $_SESSION["email"] = $infos["email"];
+                $_SESSION["id"] = $infos["id"];
+                $this->redirect("user");
             } else {
                 echo "<p>Password incorrect</p>";
             }
@@ -42,5 +47,24 @@ class UserController extends Core\Controller
         //         echo "wrong email or pass";
         //     }
         // }
+    }
+    public function showAction()
+    {
+        $this->render("show", $_SESSION);
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        unset($_SESSION['user_session']);
+        $this->redirect("login");
+    }
+    public function delete($id)
+    {
+        $model = new UserModel;
+        $model->deleteAccount("users",$id);
+        session_destroy();
+        unset($_SESSION['user_session']);
+        $this->redirect("login");
     }
 }

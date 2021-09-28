@@ -11,8 +11,21 @@ class Router
     }
     public static function get($url)
     {
+        // echo "<pre>";
+        // $pop = explode("/",$url);
+        // array_pop($pop);
+        // print_r($pop);
+        // print_r($url);
+        // echo "</pre><br>";
+        // echo $url;
+        // echo "<br>";
+        // echo implode("/",$pop);
+
         if (isset(self::$routes[$url])) {
             return self::$routes[$url];
+        }
+        else if(""){
+
         }
         else{
             echo "<h2>ERROR 404 - ROUTE NOT FOUND</h2>";

@@ -24,7 +24,6 @@ class Core
     }
     public function callController($arr)
     {
-
         $Controller = ucfirst($arr["controller"]) . "Controller";
         $Action = $arr["action"] . "Action";
         $arr = [$Controller, $Action];
@@ -33,13 +32,11 @@ class Core
             echo "<h2>404 ERROR - CONTROLLER NOT FOUND</h2>";
             echo "<h4> The '" . $Controller . "' controller doesn't exist.</h4>";
         }
-
         $call = new $Controller;
         if (!method_exists($call, $Action)) {
             echo "<h2>404 ERROR - METHOD NOT FOUND</h2>";
             echo "<h4> The '" . $Action . "()' method doesn't exist in the Class '" . $Controller . "'.</h4>";
         }
-
         $call->$Action();
     }
 }
