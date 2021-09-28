@@ -1,5 +1,5 @@
 <h4>Login form:</h4>
-<form method="post">
+<form method="post" action="login">
     <label for="email">Email</label>
     <input type="email" name="email" id="email">
     <label for="password">Password</label>
