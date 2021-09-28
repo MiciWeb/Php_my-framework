@@ -43,9 +43,15 @@ class UserController extends Core\Controller
     {
         $params = new Core\Request;
         $request = $params->getQueryParams();
+        // update email
         if(isset($request["email"])){
             $model = new UserModel;
             $model->update("users",$_SESSION["id"],["email" => $request["email"]]);
+        }
+        // update pass
+        if(isset($request["password"])){
+            $model = new UserModel;
+            $model->update("users",$_SESSION["id"],["password" => $request["password"]]);
         }
         $this->render("show", $_SESSION);
     }

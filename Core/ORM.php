@@ -22,10 +22,6 @@ class ORM extends Database
                 $str_fields .= $key . " = '" . $value . "', ";
             }
         }
-        echo $table;
-        echo "<br>";
-        echo "UPDATE $table SET ".substr($str_fields,0,-2)." WHERE id = $id";
-        echo "<br>";
 
         $query = self::dbConnect()->query("UPDATE $table SET ".substr($str_fields,0,-2)." WHERE id = $id");
         return $query;

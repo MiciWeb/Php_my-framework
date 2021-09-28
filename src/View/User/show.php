@@ -5,6 +5,8 @@ echo $_SESSION["id"];
 <form method="post" action="show">
     <label for="">Update email</label>
     <input type="email" name="email" id="">
+    <label for="">Update password</label>
+    <input type="password" name="password" id="">
     <input type="submit" name="submit">
 </form>
 
