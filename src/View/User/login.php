@@ -8,7 +8,3 @@
 </form>
 <br>
 <h4><a href="register">Click here to register</a></h4>
-<?php
-// if (isset($_POST["submit"])) {
-//     $this->loginAction();
-// }

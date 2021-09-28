@@ -14,7 +14,6 @@ class UserModel extends \Core\Entity
         }
     }
     public function deleteAccount($user,$id){
-        echo "hello";
-        // return $this->delete($user,$id); 
+        return $this->delete($user,$id); 
     }
 }

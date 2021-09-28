@@ -59,12 +59,15 @@ class UserController extends Core\Controller
         unset($_SESSION['user_session']);
         $this->redirect("login");
     }
-    public function delete($id)
+    public function deleteAction()
     {
-        $model = new UserModel;
-        $model->deleteAccount("users",$id);
-        session_destroy();
-        unset($_SESSION['user_session']);
-        $this->redirect("login");
+        if(isset($_SESSION["id"])){
+            $model = new UserModel;
+            $model->deleteAccount("users",$_SESSION["id"]);
+            session_destroy();
+            unset($_SESSION['user_session']);
+            $message = "Account deleted !";
+			$this->render("delete", ["message" => $message]);
+        }
     }
 }

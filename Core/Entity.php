@@ -26,7 +26,6 @@ class Entity
     }
     public function delete($table, $id)
     {
-        echo "is: " . $id;
         return ORM::delete($table, $id);
     }
     public function find($table, $params)

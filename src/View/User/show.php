@@ -1,7 +1,6 @@
 <?php
 // echo "<h4>Hello ". $scope["email"] .", howayou?</h4>";
 echo $_SESSION["id"];
-// fais la session bg   
 ?>
 <form method="post">
     <label for="">Update email</label>
@@ -14,7 +13,7 @@ echo $_SESSION["id"];
     <input name="logout" type="submit" value="Ok">
 </form>
 
-<form method="post">
+<form action="delete" method="post">
     <label for="">Delete</label>
     <input name="delete" type="submit" value="Ok">
 </form>
@@ -26,6 +25,6 @@ if (isset($_POST["updateEmail"])) {
 if (isset($_POST["logout"])) {
     $this->logout();
 }
-if (isset($_POST["delete"])) {
-    $this->delete($_SESSION["id"]);
-}
+// if (isset($_POST["delete"])) {
+//     $this->delete($_SESSION["id"]);
+// }
