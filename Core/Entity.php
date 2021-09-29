@@ -16,9 +16,9 @@ class Entity
     {
         return ORM::create($table, $fields);
     }
-    public function read($table, $email)
+    public function read($table, $id)
     {
-        return ORM::read($table, $email);
+        return ORM::read($table, $id);
     }
     public function update($table, $id, $fields)
     {

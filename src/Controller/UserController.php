@@ -39,20 +39,27 @@ class UserController extends Core\Controller
             }
         }
     }
+    
     public function showAction()
     {
         $params = new Core\Request;
         $request = $params->getQueryParams();
+        $model = new UserModel;
+        $infos = $model->checkLogin($request);
         // update email
-        if(isset($request["email"])){
+        if (isset($request["email"])) {
             $model = new UserModel;
-            $model->update("users",$_SESSION["id"],["email" => $request["email"]]);
+            $model->update("users", $_SESSION["id"], ["email" => $request["email"]]);
+            if (isset($infos["email"])) {
+                $_SESSION["email"] = $infos["email"];
+            }
         }
         // update pass
-        if(isset($request["password"])){
+        if (isset($request["password"])) {
             $model = new UserModel;
-            $model->update("users",$_SESSION["id"],["password" => $request["password"]]);
+            $model->update("users", $_SESSION["id"], ["password" => $request["password"]]);
         }
+
         $this->render("show", $_SESSION);
     }
 

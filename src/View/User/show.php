@@ -1,7 +1,4 @@
-<?php
-// echo "<h4>Hello ". $scope["email"] .", howayou?</h4>";
-echo $_SESSION["id"];
-?>
+<?= "Hello " . $_SESSION["email"]; ?>
 <form method="post" action="show">
     <label for="">Update email</label>
     <input type="email" name="email" id="">
@@ -14,3 +11,5 @@ echo $_SESSION["id"];
     <label for="">Delete</label>
     <input name="delete" type="submit" value="Ok">
 </form>
+
+<h3><a href="movie">See movies</a></h3> 

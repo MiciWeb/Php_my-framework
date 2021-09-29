@@ -39,8 +39,7 @@ class ORM extends Database
                 $str_fields .= $key . " " . $value . " ";
             }
         }
-
         $query = self::dbConnect()->query("SELECT * FROM $table $str_fields ");
-        return $query->fetch(\PDO::FETCH_ASSOC);
+        return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

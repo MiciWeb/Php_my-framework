@@ -23,15 +23,11 @@ class Router
 
         if (isset(self::$routes[$url])) {
             return self::$routes[$url];
-        }
-        else if(""){
-
-        }
-        else{
+        } else {
             echo "<h2>ERROR 404 - ROUTE NOT FOUND</h2>";
             return false;
         }
-    }  
+    }
 }
 
 class DynamicRouter
@@ -58,7 +54,7 @@ class DynamicRouter
         if (!isset($arr["action"]) || $arr["action"] == "") {
             $arr["action"] = "index";
         }
-        
+
         return $arr;
     }
 }

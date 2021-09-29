@@ -1,6 +1,7 @@
 <?php
 
 namespace Core;
+
 class Core
 {
     public function run()
@@ -8,8 +9,13 @@ class Core
         include_once("./src/routes.php");
         $url = $_SERVER['REQUEST_URI'];
         $Router = new Router();
-        if ($Router->get($url) != null) {
-            $arr = $Router->get($url);
+        $pop = explode("/", $url);
+        if (count($pop) > 2) {
+            array_pop($pop);
+        }
+        $urlParam = implode("/",$pop);
+        if ($Router->get($urlParam) != null) {
+            $arr = $Router->get($urlParam);
             $this->callController($arr);
         }
         // ! // If you want to use the dynamic router just uncomment this and comment the basic router above
