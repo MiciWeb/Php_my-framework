@@ -10,7 +10,7 @@ class Core
         $url = $_SERVER['REQUEST_URI'];
         $Router = new Router();
         $pop = explode("/", $url);
-        if (count($pop) > 2) {
+        if (ctype_digit(end($pop))){
             array_pop($pop);
         }
         $urlParam = implode("/",$pop);
@@ -23,9 +23,6 @@ class Core
         // if ($DynamicRouter->get($url) != null) {
         //     $arr = $DynamicRouter->get($url);
         //     $this->callController($arr);
-        //     echo "<pre>";
-        //     print_r($DynamicRouter->get($url));
-        //     echo "</pre>";
         // }
     }
     public function callController($arr)
