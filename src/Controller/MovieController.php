@@ -16,7 +16,12 @@ class MovieController extends Core\Controller
     }
     public function deleteAction()
     {
+        $params = new Core\Request;
+        $request = $params->getQueryParams();
         $this->render("delete");
-        echo "oui";
+        if (isset($request)) {
+            $model = new MovieModel;
+            $model->deleteMovie("film", key($request));
+        }
     }
 }

@@ -28,6 +28,10 @@ class Entity
     {
         return ORM::delete($table, $id);
     }
+    public function deleteFilm($table, $id)
+    {
+        return ORM::deleteFilm($table, $id);
+    }
     public function find($table, $params)
     {
         return ORM::find($table, $params);

@@ -3,7 +3,7 @@ foreach ($infos as $value) {
     if ($value["id_film"] < 18) {
         echo "Film " . $value["id_film"] . ":&nbsp; <a href='movie/" . $value["id_film"] . "'>  " . $value["titre"] . "</a> &nbsp;";
         echo '<form action="movie/delete" method="post">
-            <input type="submit" value="delete">
+            <input type="submit" value="delete" name="' . $value["id_film"] . '">
             </form><br><br>';
     }
 }

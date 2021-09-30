@@ -23,12 +23,17 @@ class ORM extends Database
             }
         }
 
-        $query = self::dbConnect()->query("UPDATE $table SET ".substr($str_fields,0,-2)." WHERE id = $id");
+        $query = self::dbConnect()->query("UPDATE $table SET " . substr($str_fields, 0, -2) . " WHERE id = $id");
         return $query;
     }
     public static function delete($table, $id)
     {
         $query = self::dbConnect()->query("DELETE FROM $table WHERE id = $id");
+        return $query;
+    }
+    public static function deleteFilm($table, $id)
+    {
+        $query = self::dbConnect()->query("DELETE FROM $table WHERE id_film = $id");
         return $query;
     }
     public static function find($table, $params)
