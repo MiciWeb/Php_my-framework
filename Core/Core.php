@@ -10,10 +10,10 @@ class Core
         $url = $_SERVER['REQUEST_URI'];
         $Router = new Router();
         $pop = explode("/", $url);
-        if (ctype_digit(end($pop))){
+        if (ctype_digit(end($pop))) {
             array_pop($pop);
         }
-        $urlParam = implode("/",$pop);
+        $urlParam = implode("/", $pop);
         if ($Router->get($urlParam) != null) {
             $arr = $Router->get($urlParam);
             $this->callController($arr);

@@ -26,6 +26,17 @@ class ORM extends Database
         $query = self::dbConnect()->query("UPDATE $table SET " . substr($str_fields, 0, -2) . " WHERE id = $id");
         return $query;
     }
+    public static function updateFilm($table, $id, $fields)
+    {
+        $str_fields = "";
+        foreach ($fields as $key => $value) {
+            if (!empty($value) && $key != "old_password") {
+                $str_fields .= $key . " = '" . $value . "', ";
+            }
+        }
+        $query = self::dbConnect()->query("UPDATE $table SET " . substr($str_fields, 0, -2) . " WHERE id_film = $id");
+        return $query;
+    }
     public static function delete($table, $id)
     {
         $query = self::dbConnect()->query("DELETE FROM $table WHERE id = $id");

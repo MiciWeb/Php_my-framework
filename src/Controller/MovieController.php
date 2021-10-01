@@ -24,4 +24,16 @@ class MovieController extends Core\Controller
             $model->deleteMovie("film", key($request));
         }
     }
+    public function editAction(){
+        $this->render("edit");
+        $params = new Core\Request;
+        $request = $params->getQueryParams();
+        if (isset($request)) {
+            // echo $request["title"];
+            echo "<br>";
+            // echo $request["edit"];
+            $model = new MovieModel;
+            $model->updateFilm("film", $request["edit"], ["titre" => $request["title"]]);
+        }
+    }
 }

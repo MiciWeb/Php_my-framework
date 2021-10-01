@@ -24,6 +24,10 @@ class Entity
     {
         return ORM::update($table, $id, $fields);
     }
+    public function updateFilm($table, $id, $fields)
+    {
+        return ORM::updateFilm($table, $id, $fields);
+    }
     public function delete($table, $id)
     {
         return ORM::delete($table, $id);
