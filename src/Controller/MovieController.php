@@ -33,9 +33,6 @@ class MovieController extends Core\Controller
         $params = new Core\Request;
         $request = $params->getQueryParams();
         if (isset($request)) {
-            // echo $request["title"];
-            echo "<br>";
-            // echo $request["edit"];
             $model = new MovieModel;
             $model->updateFilm("film", $request["edit"], ["titre" => $request["title"]]);
         }

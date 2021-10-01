@@ -32,6 +32,10 @@ class Entity
     {
         return ORM::updateFilm($table, $id, $fields);
     }
+    public function updateGender($table, $id, $fields)
+    {
+        return ORM::updateGender($table, $id, $fields);
+    }
     public function delete($table, $id)
     {
         return ORM::delete($table, $id);

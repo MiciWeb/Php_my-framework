@@ -10,3 +10,4 @@ Router::connect('/movie', ['controller' => "movie", 'action' => 'show']);
 Router::connect('/movie/{id}', ['controller' => "movie", 'action' => 'show']);
 Router::connect('/movie/delete', ['controller' => "movie", 'action' => 'delete']);
 Router::connect('/movie/edit', ['controller' => "movie", 'action' => 'edit']);
+Router::connect('/movie/edit-gender', ['controller' => "gender", 'action' => 'edit']);
