@@ -20,6 +20,10 @@ class Entity
     {
         return ORM::read($table, $id);
     }
+    public function readGenre($table, $id)
+    {
+        return ORM::readGenre($table, $id);
+    }
     public function update($table, $id, $fields)
     {
         return ORM::update($table, $id, $fields);

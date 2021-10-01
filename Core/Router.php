@@ -7,32 +7,10 @@ class Router
     private static $routes;
     public static function connect($url, $route)
     {
-        // $pop = explode("/", $url);
-        // if (array_pop($pop) === "{id}") {
-        //     // str_replace("{id}", "LOLL", array_pop($pop));
-        //     $urlParam = implode("/", $pop);
-        // } else {
-        //     $urlParam = $url;
-        // }
-        // echo str_replace("{id}","LOL",end($pop));
-        // echo "kkk" . $urlParam . "<br>";
-        // echo "<pre>";
-        // print_r($pop);
-        // echo "</pre>";
         self::$routes[$url] = $route;
     }
     public static function get($url)
     {
-        // echo "<pre>";
-        // $pop = explode("/",$url);
-        // array_pop($pop);
-        // print_r($pop);
-        // print_r($url);
-        // echo "</pre><br>";
-        // echo $url;
-        // echo "<br>";
-        // echo implode("/",$pop);
-
         if (isset(self::$routes[$url])) {
             return self::$routes[$url];
         } else {

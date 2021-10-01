@@ -14,6 +14,11 @@ class ORM extends Database
         $query = self::dbConnect()->query("SELECT * FROM $table WHERE id = $id");
         return $query->fetch(\PDO::FETCH_ASSOC);
     }
+    public static function readGenre($table, $id)
+    {
+        $query = self::dbConnect()->query("SELECT * FROM $table WHERE id_genre = $id");
+        return $query->fetchAll(\PDO::FETCH_ASSOC);
+    }
     public static function update($table, $id, $fields)
     {
         $str_fields = "";

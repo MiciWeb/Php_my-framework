@@ -4,5 +4,6 @@ foreach ($infos as $value) {
         echo "<h2> " . $value["titre"] . "</h2>";
         echo "<h2> " . $value["resum"] . "</h2>";
         echo "<h2> " . $value["date_debut_affiche"] . "</h2>";
+        echo "<h2> Genre: ". $genre[0]["nom"];
     }
 }

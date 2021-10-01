@@ -9,7 +9,10 @@ class MovieController extends Core\Controller
         $pop = explode("/", $url);
         $last = array_pop($pop);
         if (ctype_digit($last)) {
-            $this->render("movie", ["infos" => $infos, "last" => $last]);
+            $genre = $model->readGenre("genre", $last);
+        }
+        if (ctype_digit($last)) {
+            $this->render("movie", ["infos" => $infos, "last" => $last, "genre" => $genre]);
         } else {
             $this->render("movies", ["infos" => $infos]);
         }
@@ -24,7 +27,8 @@ class MovieController extends Core\Controller
             $model->deleteMovie("film", key($request));
         }
     }
-    public function editAction(){
+    public function editAction()
+    {
         $this->render("edit");
         $params = new Core\Request;
         $request = $params->getQueryParams();
