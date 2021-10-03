@@ -16,12 +16,11 @@ foreach ($infos as $value) {
             </select>
             <input type="submit" name="<?= $value["id_film"] ?>" value="Ok">
         </form>
+        <form action="delete-gender" method="post">
+            <input type="hidden" name="id_film" value="<?= $value["id_film"] ?>">
+            <button type="submit" value="delete" name="deleteGenre"> <i class="fa fa-trash" aria-hidden="true"></i> </button>
+        </form>
 <?php
     }
 }
 ?>
-
-
-<form action="" method="post">
-    <button type="submit" value="delete" name="deleteGenre"> <i class="fa fa-trash" aria-hidden="true"></i> </button>
-</form>

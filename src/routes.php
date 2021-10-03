@@ -11,3 +11,4 @@ Router::connect('/movie/{id}', ['controller' => "movie", 'action' => 'show']);
 Router::connect('/movie/delete', ['controller' => "movie", 'action' => 'delete']);
 Router::connect('/movie/edit', ['controller' => "movie", 'action' => 'edit']);
 Router::connect('/movie/edit-gender', ['controller' => "gender", 'action' => 'edit']);
+Router::connect('/movie/delete-gender', ['controller' => "gender", 'action' => 'delete']);

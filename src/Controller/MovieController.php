@@ -9,7 +9,9 @@ class MovieController extends Core\Controller
         $pop = explode("/", $url);
         $last = array_pop($pop);
         if (ctype_digit($last)) {
+            // fix
             $genre = $model->readGenre("genre", $last);
+            echo $last;
         }
         if (ctype_digit($last)) {
             $this->render("movie", ["infos" => $infos, "last" => $last, "genre" => $genre]);

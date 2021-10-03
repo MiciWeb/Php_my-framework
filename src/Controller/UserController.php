@@ -25,13 +25,13 @@ class UserController extends Core\Controller
         $this->render("login");
         $params = new Core\Request;
         $request = $params->getQueryParams();
-        if (isset($request) && $request != null) {
+        if (isset($request)) {
             $model = new UserModel;
             $infos = $model->checkLogin($request);
-            if (isset($infos["password"])) {
-                if ($request["password"] === $infos["password"]) {
-                    $_SESSION["email"] = $infos["email"];
-                    $_SESSION["id"] = $infos["id"];
+            if (isset($infos[0]["password"])) {
+                if ($request["password"] === $infos[0]["password"]) {
+                    $_SESSION["email"] = $infos[0]["email"];
+                    $_SESSION["id"] = $infos[0]["id"];
                     $this->redirect("show");
                 } else {
                     echo "<p>Password incorrect</p>";
@@ -50,8 +50,8 @@ class UserController extends Core\Controller
         if (isset($request["email"])) {
             $model = new UserModel;
             $model->update("users", $_SESSION["id"], ["email" => $request["email"]]);
-            if (isset($infos["email"])) {
-                $_SESSION["email"] = $infos["email"];
+            if (isset($infos[0]["email"])) {
+                $_SESSION["email"] = $infos[0]["email"];
             }
         }
         // update pass

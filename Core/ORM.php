@@ -35,9 +35,8 @@ class ORM extends Database
     {
         $str_fields = "";
         foreach ($fields as $key => $value) {
-            if (!empty($value) && $key != "old_password") {
                 $str_fields .= $key . " = '" . $value . "', ";
-            }
+            
         }
         $query = self::dbConnect()->query("UPDATE $table SET " . substr($str_fields, 0, -2) . " WHERE id_film = $id");
         return $query;
@@ -46,11 +45,15 @@ class ORM extends Database
     {
         $str_fields = "";
         foreach ($fields as $key => $value) {
-            if (!empty($value) && $key != "old_password") {
+            if($value === "NULL"){
+                $str_fields .= $key . " = " . $value . ", ";
+            }else if(ctype_digit($value)){
+                $str_fields .= $key . " = " . $value . ", ";
+            }
+            else{
                 $str_fields .= $key . " = '" . $value . "', ";
             }
         }
-
         $query = self::dbConnect()->query("UPDATE $table SET " . substr($str_fields, 0, -2) . " WHERE id_film = $id");
         return $query;
     }
@@ -68,9 +71,7 @@ class ORM extends Database
     {
         $str_fields = "";
         foreach ($params as $key => $value) {
-            if (!empty($value) && $key != "old_password") {
-                $str_fields .= $key . " " . $value . " ";
-            }
+            $str_fields .= $key . " " . $value . " ";
         }
         $query = self::dbConnect()->query("SELECT * FROM $table $str_fields ");
         return $query->fetchAll(\PDO::FETCH_ASSOC);
